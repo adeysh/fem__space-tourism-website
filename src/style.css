@@ -7,7 +7,7 @@
     --clr-white: 0 0% 100%;
 
     /* font-sizes */
-    --fs-900: 9rem;
+    --fs-900: clamp(5rem, 10vw + 1rem, 9rem);
     --fs-800: 6.25rem;
     --fs-700: 3.5rem;
     --fs-600: 2rem;
@@ -52,6 +52,10 @@
         background-color: hsl(var(--clr-dark));
         line-height: 1.5;
         min-height: 100vh;
+
+        display: grid;
+        grid-template-rows: min-content 1fr;
+        overflow-x: hidden;
     }
 
     /* make images easier to work with */
@@ -85,13 +89,46 @@
 
     .flow > *:where(:not(:first-child)) {
         margin-top: var(--flow-space, 1rem);
-        outline: 1px solid red;
     }
 
     .container {
         padding-inline: 2em;
         margin-inline: auto;
         max-width: 60rem;
+    }
+
+    .grid-container {
+        text-align: center;
+        display: grid;
+        place-items: center;
+        padding-inline: 1rem;
+    }
+
+    .grid-container * {
+        max-width: 50ch;
+    }
+
+    @media (min-width: 45em) {
+        .grid-container {
+            text-align: left;
+            column-gap: var(--container-gap, 2rem);
+            grid-template-columns:
+                minmax(2rem, 1fr) repeat(2, minmax(0, 30rem))
+                minmax(2rem, 1fr);
+        }
+
+        .grid-container > *:first-child {
+            grid-column: 2;
+        }
+
+        .grid-container > *:last-child {
+            grid-column: 3;
+        }
+
+        .grid-container--home {
+            padding-bottom: max(6rem, 20vh);
+            align-items: end;
+        }
     }
 
     /* colors */
@@ -201,9 +238,10 @@
 
     /* components */
     .large-button {
+        font-size: 2rem;
         position: relative;
         z-index: 1;
-        display: grid;
+        display: inline-grid;
         place-items: center;
         padding: 0 2em;
         border-radius: 50%;
@@ -229,5 +267,171 @@
     .large-button:focus::after {
         opacity: 1;
         transform: scale(1.5);
+    }
+
+    .primary-navigation {
+        --underline-gap: 2rem;
+        list-style: none;
+        padding: 0;
+        margin: 0;
+        background: hsl(var(--clr-dark) / 0.95);
+        /* backdrop-filter: blur(2rem); */
+    }
+
+    @supports (backdrop-filter: blur(1rem)) {
+        .primary-navigation {
+            background: hsl(var(--clr-white) / 0.05);
+            -webkit-backdrop-filter: blur(1.5rem);
+            backdrop-filter: blur(1.5rem);
+        }
+    }
+
+    .mobile-nav-toggle {
+        display: none;
+    }
+
+    @media (max-width: 35rem) {
+        .primary-navigation {
+            --underline-gap: 0.5rem;
+            position: fixed;
+            z-index: 1000;
+            inset: 0 0 0 30%;
+            list-style: none;
+            padding: min(20rem, 15vh) 2rem;
+            margin: 0;
+            flex-direction: column;
+            transform: translateX(100%);
+        }
+
+        .primary-navigation.underline-indicators > .active {
+            border: 0;
+        }
+
+        .mobile-nav-toggle {
+            display: block;
+            position: absolute;
+            z-index: 2000;
+            right: 1rem;
+            top: 2rem;
+            background: transparent;
+            background-image: url(./assets/shared/icon-hamburger.svg);
+            background-repeat: no-repeat;
+            width: 1.5rem;
+            aspect-ratio: 1;
+            border: 0;
+        }
+    }
+
+    .primary-navigation a {
+        text-decoration: none;
+    }
+
+    .primary-navigation a > span {
+        font-weight: 700;
+        margin-right: 0.5em;
+    }
+
+    .underline-indicators > * {
+        cursor: pointer;
+        padding: var(--underline-gap, 1rem) 0;
+        border: 0;
+        border-bottom: 0.2rem solid hsl(var(--clr-white) / 0);
+    }
+
+    .underline-indicators > *:hover,
+    .underline-indicators > *:focus {
+        border-color: hsl(var(--clr-white) / 0.5);
+    }
+
+    .underline-indicators > .active,
+    .underline-indicators > [aria-selected="true"] {
+        color: hsl(var(--clr-white) / 1);
+        border-color: hsl(var(--clr-white) / 1);
+    }
+
+    .tab-list {
+        --gap: 2rem;
+    }
+
+    .dot-indicators > * {
+        cursor: pointer;
+        border: 0;
+        border-radius: 50%;
+        padding: 0.5em;
+        background-color: hsl(var(--clr-white) / 0.25);
+    }
+
+    .dot-indicators > *:hover,
+    .dot-indicators > *:focus {
+        background-color: hsl(var(--clr-white) / 0.5);
+    }
+
+    .dot-indicators > [aria-selected="true"] {
+        background-color: hsl(var(--clr-white) / 1);
+    }
+
+    .number-indicators > * {
+        display: grid;
+        place-items: center;
+        cursor: pointer;
+        border: 1px solid var(--clr-white);
+        border-radius: 50%;
+        padding: 2em;
+        background-color: hsl(var(--clr-dark));
+    }
+
+    .number-indicators > *:hover,
+    .number-indicators > *:focus {
+        border: 1.5px solid var(--clr-white);
+    }
+
+    .number-indicators > .active,
+    .number-indicators > [aria-selected="true"] {
+        background-color: hsl(var(--color-white));
+        color: hsl(--clr-dark);
+    }
+
+    @media (min-width: 35em) {
+        :root {
+            --fs-800: 5rem;
+            --fs-700: 2.5rem;
+            --fs-600: 1.5rem;
+            --fs-400: 1rem;
+        }
+    }
+
+    @media (min-width: 45em) {
+        :root {
+            /* font-sizes */
+            --fs-800: 6.25rem;
+            --fs-700: 3.5rem;
+            --fs-600: 2rem;
+            --fs-400: 1.125rem;
+        }
+    }
+
+    /* Page specific background */
+
+    body {
+        background-size: cover;
+        background-position: bottom center;
+    }
+
+    /* home */
+    .home {
+        background-image: url(/assets/home/background-home-mobile.jpg);
+    }
+
+    @media (min-width: 35rem) {
+        .home {
+            background-position: center center;
+            background-image: url(/assets/home/background-home-tablet.jpg);
+        }
+    }
+
+    @media (min-width: 45rem) {
+        .home {
+            background-image: url(/assets/home/background-home-desktop.jpg);
+        }
     }
 }
