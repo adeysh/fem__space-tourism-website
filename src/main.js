@@ -20,6 +20,7 @@ navToggle.addEventListener("click", () => {
 
 // Tabs
 const tabList = document.querySelector('[role="tablist"]');
+console.log(tabList);
 const tabs = tabList.querySelectorAll('[role="tab"]');
 
 tabList.addEventListener("keydown", changeTabFocus);

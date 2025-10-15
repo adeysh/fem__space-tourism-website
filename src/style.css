@@ -535,6 +535,7 @@
     .grid-container--destination > picture {
         grid-area: image;
         max-width: 60%;
+        align-self: start;
     }
 
     .grid-container--destination > .tab-list {
@@ -637,8 +638,7 @@
                 ". image content .";
         }
 
-        .grid-container--destination > picture,
-        .grid-container--crew > picture {
+        .grid-container--destination > picture {
             max-width: 90%;
         }
 
@@ -652,14 +652,20 @@
                 ". title title ."
                 ". content image ."
                 ". tabs image .";
-        }
 
-        .grid-container--crew > .dot-indicators {
-            justify-self: start;
+            justify-self: center;
+
+            grid-template-columns:
+                minmax(1rem, 1fr)
+                minmax(0, 37rem)
+                minmax(0, 23rem)
+                minmax(1rem, 1fr);
         }
 
         .grid-container--crew > picture {
+            grid-column: span 2;
             align-self: end;
+            max-width: 90%;
         }
     }
 }
