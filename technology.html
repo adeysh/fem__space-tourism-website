@@ -24,7 +24,7 @@
         <!-- Your styles and scripts -->
         <script type="module" src="/src/main.js" defer></script>
         <script src="/src/navigation.js" defer></script>
-        <script src="/src/tabs.js" defer></script>
+        <!-- <script src="/src/tabs.js" defer></script> -->
     </head>
     <body class="technology">
         <a
@@ -32,11 +32,10 @@
             class="skip-to-content sr-only transform-[translateY(-100%)] transition-transform duration-200 ease-in focus:not-sr-only focus:absolute focus:z-9999 focus:mx-auto focus:transform-[translateY(0)] focus:bg-[hsl(var(--clr-white))] focus:px-[0.5em] focus:py-[0.2em] focus:text-[hsl(var(--clr-dark))]"
             >Skip to content</a
         >
-
         <header class="primary-header flex">
             <div>
                 <img
-                    src="/assets/shared/logo.svg"
+                    src="assets/shared/logo.svg"
                     alt="space tourism logo"
                     class="logo"
                 />
@@ -45,16 +44,15 @@
                 type="button"
                 class="mobile-nav-toggle"
                 aria-controls="primary-navigation"
+                aria-expanded="false"
             >
-                <span class="sr-only" aria-expanded="false" role="button">
-                    Menu
-                </span>
+                <span class="sr-only">Menu</span>
             </button>
             <nav>
                 <ul
-                    class="primary-navigation underline-indicators flex"
                     id="primary-navigation"
                     data-visible="false"
+                    class="primary-navigation underline-indicators flex"
                 >
                     <li>
                         <a
@@ -97,12 +95,12 @@
         </header>
 
         <main class="grid-container grid-container--technology flow" id="main">
-            <h1 class="numbered-title uppercase">
+            <h1 class="numbered-title">
                 <span aria-hidden="true">03</span> Space launch 101
             </h1>
 
             <div
-                class="number-indicators fs-600 ff-serif flex justify-between gap-[2rem]"
+                class="number-indicators flex"
                 role="tablist"
                 aria-label="technology list"
             >
@@ -110,9 +108,9 @@
                     type="button"
                     aria-selected="true"
                     role="tab"
-                    aria-controls="launch-tab"
+                    aria-controls="dynamic-content"
                     tabindex="0"
-                    data-image="launch-image"
+                    data-index="0"
                 >
                     1
                 </button>
@@ -120,9 +118,9 @@
                     type="button"
                     aria-selected="false"
                     role="tab"
-                    aria-controls="spaceport-tab"
+                    aria-controls="dynamic-content"
                     tabindex="-1"
-                    data-image="spaceport-image"
+                    data-index="1"
                 >
                     2
                 </button>
@@ -130,130 +128,48 @@
                     type="button"
                     aria-selected="false"
                     role="tab"
-                    aria-controls="capsule-tab"
+                    aria-controls="dynamic-content"
                     tabindex="-1"
-                    data-image="capsule-image"
+                    data-index="2"
                 >
                     3
                 </button>
             </div>
 
-            <!-- Launch vehicle -->
+            <!-- Dynamic Content Container -->
             <article
                 class="technology-info flow"
-                id="launch-tab"
+                id="dynamic-content"
                 tabindex="0"
                 role="tabpanel"
             >
                 <header class="flow flow--space-small">
-                    <h2 class="fs-600 ff-serif letter-spacing-2 uppercase">
+                    <p
+                        class="text-accent fs-400 ff-sans-cond letter-spacing-2 uppercase"
+                        id="technology-subtitle"
+                    >
                         The terminology...
+                    </p>
+                    <h2 class="fs-700 ff-serif uppercase" id="technology-name">
+                        Loading...
                     </h2>
-                    <p class="fs-600 ff-serif uppercase">Launch vehicle</p>
                 </header>
-                <p>
-                    A launch vehicle or carrier rocket is a rocket-propelled
-                    vehicle used to carry a payload from Earth's surface to
-                    space, usually to Earth orbit or beyond. Our WEB-X carrier
-                    rocket is the most powerful in operation. Standing 150
-                    metres tall, it's quite an awe-inspiring sight on the launch
-                    pad!
-                </p>
+                <p id="technology-description">Loading...</p>
             </article>
 
-            <!-- Spaceport -->
-            <article
-                hidden
-                class="technology-info flow"
-                id="spaceport-tab"
-                tabindex="0"
-                role="tabpanel"
-            >
-                <header class="flow flow--space-small">
-                    <h2 class="fs-600 ff-serif letter-spacing-2 uppercase">
-                        The terminology...
-                    </h2>
-                    <p class="fs-700 ff-serif uppercase">Spaceport</p>
-                </header>
-                <p>
-                    A spaceport or cosmodrome is a site for launching (or
-                    receiving) spacecraft, by analogy to the seaport for ships
-                    or airport for aircraft. Based in the famous Cape Canaveral,
-                    our spaceport is ideally situated to take advantage of the
-                    Earth’s rotation for launch.
-                </p>
-            </article>
-
-            <!-- Space capsule -->
-            <article
-                hidden
-                class="technology-info flow"
-                id="capsule-tab"
-                tabindex="0"
-                role="tabpanel"
-            >
-                <header class="flow flow--space-small">
-                    <h2 class="fs-600 ff-serif letter-spacing-2 uppercase">
-                        The terminology...
-                    </h2>
-                    <p class="fs-700 ff-serif uppercase">Space capsule</p>
-                </header>
-                <p>
-                    A space capsule is an often-crewed spacecraft that uses a
-                    blunt-body reentry capsule to reenter the Earth's atmosphere
-                    without wings. Our capsule is where you'll spend your time
-                    during the flight. It includes a space gym, cinema, and
-                    plenty of other activities to keep you entertained.
-                </p>
-            </article>
-
-            <picture id="launch-image">
+            <!-- Dynamic Image Container (for Launch Vehicle) -->
+            <picture id="dynamic-image">
                 <source
                     media="(max-width: 45rem)"
-                    srcset="
-                        /assets/technology/image-launch-vehicle-landscape.jpg
-                    "
+                    srcset=""
+                    id="image-landscape-source"
                 />
                 <source
                     media="(min-width: 45rem)"
-                    srcset="
-                        /assets/technology/image-launch-vehicle-portrait.jpg
-                    "
+                    srcset=""
+                    id="image-portrait-source"
                 />
-                <img
-                    src="/assets/technology/image-launch-vehicle-portrait.jpg"
-                    alt="Launch vehicle"
-                />
-            </picture>
-            <picture hidden id="spaceport-image">
-                <source
-                    media="(max-width: 45rem)"
-                    srcset="/assets/technology/image-spaceport-landscape.jpg"
-                />
-                <source
-                    media="(min-width: 45rem)"
-                    srcset="/assets/technology/image-spaceport-portrait.jpg"
-                />
-                <img
-                    src="/assets/technology/image-spaceport-portrait.jpg"
-                    alt="Spaceport"
-                />
-            </picture>
-            <picture hidden id="capsule-image">
-                <source
-                    media="(max-width: 45rem)"
-                    srcset="
-                        /assets/technology/image-space-capsule-landscape.jpg
-                    "
-                />
-                <source
-                    media="(min-width: 45rem)"
-                    srcset="/assets/technology/image-space-capsule-portrait.jpg"
-                />
-                <img
-                    src="/assets/technology/image-space-capsule-portrait.jpg"
-                    alt="Space capsule"
-                />
+                <img src="" alt="Technology image" id="image-default" />
             </picture>
         </main>
     </body>

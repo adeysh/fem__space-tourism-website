@@ -636,7 +636,7 @@
         }
 
         .grid-container--home {
-            padding-bottom: max(6rem, 20vh);
+            padding-block: max(6rem, 20vh);
             align-items: end;
         }
 
