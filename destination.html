@@ -22,6 +22,8 @@
         />
 
         <script type="module" src="/src/main.js" defer></script>
+        <script src="/src/navigation.js" defer></script>
+        <script src="/src/tabs.js" defer></script>
     </head>
     <body class="destination">
         <a
@@ -39,6 +41,7 @@
                 />
             </div>
             <button
+                type="button"
                 class="mobile-nav-toggle"
                 aria-controls="primary-navigation"
             >
@@ -52,7 +55,7 @@
                     id="primary-navigation"
                     data-visible="false"
                 >
-                    <li class="active">
+                    <li>
                         <a
                             class="letter-spacing-2 ff-sans-cond text-white uppercase"
                             href="index.html"
@@ -61,7 +64,7 @@
                             Home
                         </a>
                     </li>
-                    <li>
+                    <li class="active">
                         <a
                             class="letter-spacing-2 ff-sans-cond text-white uppercase"
                             href="destination.html"
