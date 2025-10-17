@@ -30,8 +30,8 @@ Users should be able to:
 
 ### Links
 
-- Solution URL: [Add solution URL here](https://your-solution-url.com)
-- Live Site URL: [Add live site URL here](https://your-live-site-url.com)
+- Solution URL: [Space Tourism Website](https://www.frontendmentor.io/solutions/responsive-space-tourism-website-using-htmlcss-tailwind-and-js-JRP4vck_Sz)
+- Live Site URL: [Space Tourism Website](https://fem-space-tourism-website-pi.vercel.app/)
 
 ## My process
 
