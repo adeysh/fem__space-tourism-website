@@ -1,4 +1,6 @@
 import "./style.css";
+import "./navigation.js";
+
 const tabList = document.querySelector('[role="tablist"]');
 const tabs = tabList ? tabList.querySelectorAll('[role="tab"]') : [];
 const mainContainer = tabList ? tabList.closest("main") : null;
